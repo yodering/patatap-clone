@@ -19,3 +19,19 @@ html, body {
 .pop-up-text {
 
 }
+
+
+.second-motion {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(247, 247, 173);
+  position: absolute;
+  top: -100%;
+  transition: top 0.2s ease-in-out;
+}
+
+
+
+.second-motion.visible {
+  top: 100%;
+}
