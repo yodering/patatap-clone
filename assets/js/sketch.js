@@ -54,27 +54,27 @@ function keyPressed() {
       secondMotionDiv.style.top = "0%"
 
       setTimeout(function() {
-        secondMotionDiv.style.top = "100%"
+      secondMotionDiv.style.top = "100%"
 
-        secondMotionDiv.addEventListener('transitionend', function() {
-          divState = 'down' // update the state after the transition ends
-        }, { once: true })  // ensure the event listener is called only once
-      }, 800) // pause time
+      secondMotionDiv.addEventListener('transitionend', function() {
+      divState = 'down' // update the state after the transition ends
+      }, { once: true })  // ensure the event listener is called only once
+    }, 800) // pause time
 
-    } else if (divState === 'down') { // moves from down to up
+  } else if (divState === 'down') { // moves from down to up
       divState = 'movingUp'
       secondMotionDiv.style.top = "0%"
 
       setTimeout(function() {
-        secondMotionDiv.style.top = "-100%"
+      secondMotionDiv.style.top = "-100%"
 
-        secondMotionDiv.addEventListener('transitionend', function() {
-          divState = 'up' // update the state after the transition ends
-        }, { once: true })  // ensure the event listener is called only once
-      }, 800) // pause time
-    }
+      secondMotionDiv.addEventListener('transitionend', function() {
+      divState = 'up' // update the state after the transition ends
+      }, { once: true })  // ensure the event listener is called only once
+    }, 800) // pause time
+  }
 
-    return false  // prevent default
+   return false  // prevent default
   }
 }
 
