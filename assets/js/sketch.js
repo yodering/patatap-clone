@@ -15,6 +15,11 @@ var sound7
 var sound8
 var sound9
 
+
+function preload() {
+  sound1 = loadSound("assets/sound1.wav")
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight)
   
@@ -32,6 +37,8 @@ function draw() {
 function keyPressed() {
   // for a
   if (key === 'a') {
+    sound1.play()
+    console.log('sound')
     flashCounter = 0
     if (flashInterval) {
       clearInterval(flashInterval)
