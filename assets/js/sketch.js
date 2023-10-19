@@ -14,10 +14,13 @@ var sound6
 var sound7
 var sound8
 var sound9
+var circleDiv;
+
 
 
 function preload() {
   sound1 = loadSound("assets/sound1.wav")
+  circleDiv = select('#circleDiv');
 }
 
 function setup() {
@@ -25,7 +28,9 @@ function setup() {
   
 }
 
-
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
 
 function draw() {
   background(backgroundColor)
@@ -83,17 +88,32 @@ function keyPressed() {
 
    return false  // prevent default
   }
+
+  if (key === 'd') {
+    animateCircleDiv();
+    console.log("pressed")
+}
 }
 
 
 
 
 
-
-
-
-
-
+function animateCircleDiv() {
+  anime({
+      targets: '.circleDiv',
+      translateX: '250px',
+      scale: [1, 2],
+      backgroundColor: {
+          value: ['#FF0000', '#0000FF'], // From red to blue
+          duration: 750, // Half of 1500ms to transition to blue mid-way
+          easing: 'linear'
+      },
+      duration: 1500,
+      easing: 'easeInOutQuad',
+      direction: 'alternate'
+  });
+}
 
 
 
