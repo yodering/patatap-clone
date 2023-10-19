@@ -40,10 +40,30 @@ html, body {
 .circleDiv {
   width: 100px;
   height: 100px;
-  background-color: red;
+  background-color: rgb(144, 170, 216);
   border-radius: 50%;
-  position: absolute;
-  top:50%;
-  left: 50%;
-  
+  position: absolute; 
 }
+
+
+#topLeft {
+  top: -100%;
+  left: 15%;
+}
+
+#topRight {
+  top: -100%;
+  right: 15%;  
+}
+
+#bottomLeft {
+  bottom: 100%;   
+  left: 15%;
+}
+
+#bottomRight {
+  bottom: 100%;   
+  right: 15%;  
+}
+
+

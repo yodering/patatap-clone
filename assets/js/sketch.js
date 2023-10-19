@@ -14,17 +14,17 @@ var sound6
 var sound7
 var sound8
 var sound9
-var circleDiv;
+var circleDiv
 
 
 
 function preload() {
-  sound1 = loadSound("assets/sound1.wav")
-  circleDiv = select('#circleDiv');
+
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight)
+   circleDiv = select('#circleDiv');
   
 }
 
@@ -42,8 +42,6 @@ function draw() {
 function keyPressed() {
   // for a
   if (key === 'a') {
-    sound1.play()
-    console.log('sound')
     flashCounter = 0
     if (flashInterval) {
       clearInterval(flashInterval)
@@ -98,26 +96,6 @@ function keyPressed() {
 
 
 
-
-function animateCircleDiv() {
-  anime({
-      targets: '.circleDiv',
-      translateX: '250px',
-      scale: [1, 2],
-      backgroundColor: {
-          value: ['#FF0000', '#0000FF'], // From red to blue
-          duration: 750, // Half of 1500ms to transition to blue mid-way
-          easing: 'linear'
-      },
-      duration: 1500,
-      easing: 'easeInOutQuad',
-      direction: 'alternate'
-  });
-}
-
-
-
-
 function flashColor() { // toggle between the flash color and original color
   if (flashCounter % 2 === 0) { 
     backgroundColor = [177, 114, 138]
@@ -136,6 +114,43 @@ function flashColor() { // toggle between the flash color and original color
   redraw()  // reset canvas
 }
 
+
+function animateCircleDiv() {
+  const circleDivs = document.querySelectorAll('.circleDiv');
+  
+  circleDivs.forEach(div => {
+    div.style.display = 'none';
+  });
+  
+  // pick a random div
+  const randomDiv = circleDivs[Math.floor(Math.random() * circleDivs.length)];
+  randomDiv.style.display = 'block';  // Display the selected div
+  
+  // determine animation based on div id
+  let animationProps;
+  switch (randomDiv.id) {
+    case 'topLeft':
+    case 'topRight':
+      animationProps = {top: ['-100%', '40%']};  // coming down into view
+      break;
+    case 'bottomLeft':
+    case 'bottomRight':
+      animationProps = {top: ['100%', '40%']};  // coming up into view
+      break;
+  }
+
+  
+  // animation
+  
+  anime({
+      targets: randomDiv,
+      ...animationProps,
+      scale: [1, 5],
+      duration: 1000,
+      easing: 'easeOutCubic',
+      direction: 'alternate'
+  });
+}
 
 
 
