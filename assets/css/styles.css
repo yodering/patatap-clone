@@ -67,3 +67,11 @@ html, body {
 }
 
 
+.rectangleDiv {
+  width: 750px;
+  height: 200px;
+  background-color: rgb(151, 77, 92);
+  position: absolute;
+  top: 35%;
+  left:30%;
+}

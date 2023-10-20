@@ -49,15 +49,7 @@ function keyPressed() {
     return false;  // prevent default
   }
 
-  // for l
-  if (key === 'l') {
-    flashCounter = 0
-    if (flashInterval) {
-      clearInterval(flashInterval)
-    }
-    flashInterval = setInterval(flashDark, 40)
-    return false;  // prevent default
-  }
+
 
   // for s
   if (key === 's') {
@@ -96,9 +88,32 @@ function keyPressed() {
    return false  // prevent default
   }
 
+  // for d
   if (key === 'd') {
     animateCircleDiv();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+ // for l
+ if (key === 'l') {
+  flashCounter = 0
+  if (flashInterval) {
+    clearInterval(flashInterval)
+  }
+  flashInterval = setInterval(flashDark, 40)
+  return false;  // prevent default
+}
+
 }
 
 
