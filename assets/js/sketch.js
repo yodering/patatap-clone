@@ -14,7 +14,6 @@ var sound6
 var sound7
 var sound8
 var sound9
-var circleDiv
 
 
 
@@ -46,7 +45,17 @@ function keyPressed() {
     if (flashInterval) {
       clearInterval(flashInterval)
     }
-    flashInterval = setInterval(flashColor, 40)
+    flashInterval = setInterval(flashPink, 40)
+    return false;  // prevent default
+  }
+
+  // for l
+  if (key === 'l') {
+    flashCounter = 0
+    if (flashInterval) {
+      clearInterval(flashInterval)
+    }
+    flashInterval = setInterval(flashDark, 40)
     return false;  // prevent default
   }
 
@@ -89,16 +98,33 @@ function keyPressed() {
 
   if (key === 'd') {
     animateCircleDiv();
-    console.log("pressed")
 }
 }
 
 
 
 
-function flashColor() { // toggle between the flash color and original color
+function flashPink() { // toggle between the flash color and original color
   if (flashCounter % 2 === 0) { 
     backgroundColor = [177, 114, 138]
+  } else {
+    backgroundColor = [...originalColor]
+  }
+  
+  flashCounter++
+  
+  // stops flash
+  if (flashCounter >= 6) {
+    clearInterval(flashInterval)
+    backgroundColor = [...originalColor]
+  }
+
+  redraw()  // reset canvas
+}
+
+function flashDark() { // toggle between the flash color and original color
+  if (flashCounter % 2 === 0) { 
+    backgroundColor = [10, 2, 5]
   } else {
     backgroundColor = [...originalColor]
   }
@@ -124,10 +150,10 @@ function animateCircleDiv() {
   
   // pick a random div
   const randomDiv = circleDivs[Math.floor(Math.random() * circleDivs.length)];
-  randomDiv.style.display = 'block';  // Display the selected div
+  randomDiv.style.display = 'block';  // display the selected div
   
-  // determine animation based on div id
-  let animationProps;
+  
+  let animationProps; // determine animation based on div id
   switch (randomDiv.id) {
     case 'topLeft':
     case 'topRight':
@@ -139,10 +165,7 @@ function animateCircleDiv() {
       break;
   }
 
-  
-  // animation
-  
-  anime({
+  anime({   // animation
       targets: randomDiv,
       ...animationProps,
       scale: [1, 5],
