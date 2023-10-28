@@ -73,5 +73,5 @@ html, body {
   background-color: rgb(151, 77, 92);
   position: absolute;
   top: 35%;
-  left:30%;
+  left: -750px; /* Initial position off the left of the screen */
 }

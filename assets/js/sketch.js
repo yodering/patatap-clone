@@ -21,6 +21,7 @@ function preload() {
   sound1 = loadSound('assets/clap.wav')
   sound2 = loadSound('assets/808.wav')
   sound3 = loadSound('assets/shutter.wav')
+  sound4 = loadSound('assets/rise.wav')
   sound9 = loadSound('assets/snare.wav')
 }
 
@@ -102,9 +103,10 @@ function keyPressed() {
     sound3.play()
 }
 
-
-
-
+if (key === "f") {
+  sound4.play()
+  animateRectangle()
+  }
 
 
 
@@ -200,3 +202,19 @@ function animateCircleDiv() {
 
 
 
+const rectangleDiv = document.querySelector(".rectangleDiv");
+let isMovingRight = true; // Define isMovingRight outside the function
+
+function animateRectangle() {
+  const targetX = isMovingRight ? '800%' : '-810%';
+  const animationDuration = 3000;
+
+  anime({
+    targets: rectangleDiv,
+    translateX: targetX,
+    duration: animationDuration,
+    easing: 'easeOutCubic',
+  });
+
+  isMovingRight = !isMovingRight; // Toggle the direction for the next press of "f"
+}
