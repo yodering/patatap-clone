@@ -18,7 +18,10 @@ var sound9
 
 
 function preload() {
-
+  sound1 = loadSound('assets/clap.wav')
+  sound2 = loadSound('assets/808.wav')
+  sound3 = loadSound('assets/shutter.wav')
+  sound9 = loadSound('assets/snare.wav')
 }
 
 function setup() {
@@ -41,6 +44,7 @@ function draw() {
 function keyPressed() {
   // for a
   if (key === 'a') {
+    sound1.play()
     flashCounter = 0
     if (flashInterval) {
       clearInterval(flashInterval)
@@ -53,6 +57,7 @@ function keyPressed() {
 
   // for s
   if (key === 's') {
+    sound2.play()
     var secondMotionDiv = document.querySelector('.second-motion')
 
     // if div currently animating, do nothing
@@ -88,13 +93,14 @@ function keyPressed() {
    return false  // prevent default
   }
 
+
+
+
   // for d
   if (key === 'd') {
     animateCircleDiv();
+    sound3.play()
 }
-
-
-
 
 
 
@@ -106,6 +112,7 @@ function keyPressed() {
 
  // for l
  if (key === 'l') {
+  sound9.play()
   flashCounter = 0
   if (flashInterval) {
     clearInterval(flashInterval)
