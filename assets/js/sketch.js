@@ -5,6 +5,7 @@ var backgroundColor = [...originalColor]
 var flashCounter = 0
 var flashInterval
 var divState = 'up' // up, down, movingup, movingdown
+let isMovingRight = true;
 var sound1
 var sound2
 var sound3
@@ -22,6 +23,7 @@ function preload() {
   sound2 = loadSound('assets/808.wav')
   sound3 = loadSound('assets/shutter.wav')
   sound4 = loadSound('assets/rise.wav')
+  sound5 = loadSound('assets/8082.wav')
   sound9 = loadSound('assets/snare.wav')
 }
 
@@ -95,18 +97,60 @@ function keyPressed() {
   }
 
 
-
-
   // for d
   if (key === 'd') {
     animateCircleDiv();
     sound3.play()
 }
 
-if (key === "f") {
-  sound4.play()
-  animateRectangle()
+
+  // for f
+  if (key === "f") {
+    sound4.play()
+    animateRectangle()
   }
+
+// for g
+if (key === 'g') {
+  sound5.play()
+  var fourthMotionDiv = document.querySelector('.fourth-motion')
+  var fourthMotionState = 'left'; // Initialize the state for the fourth-motion div
+
+  // if div currently animating, do nothing
+  if (fourthMotionState === 'movingLeft' || fourthMotionState === 'movingRight') {
+      return;
+  }
+
+  if (fourthMotionState === 'left') { // moves from left to right
+      fourthMotionState = 'movingRight'
+      fourthMotionDiv.style.left = "0%"
+
+      setTimeout(function() {
+          fourthMotionDiv.style.left = "100%"
+
+          fourthMotionDiv.addEventListener('transitionend', function() {
+              fourthMotionState = 'right' // update the state after the transition ends
+          }, { once: true })  // ensure the event listener is called only once
+      }, 800) // pause time
+
+  } else if (fourthMotionState === 'right') { // moves from right to left
+      fourthMotionState = 'movingLeft'
+      fourthMotionDiv.style.left = "0%"
+
+      setTimeout(function() {
+          fourthMotionDiv.style.left = "-100%"
+
+          fourthMotionDiv.addEventListener('transitionend', function() {
+              fourthMotionState = 'left' // update the state after the transition ends
+          }, { once: true })  // ensure the event listener is called only once
+      }, 800) // pause time
+  }
+
+  return false  // prevent default
+}
+
+
+
 
 
 
@@ -203,7 +247,6 @@ function animateCircleDiv() {
 
 
 const rectangleDiv = document.querySelector(".rectangleDiv");
-let isMovingRight = true; // Define isMovingRight outside the function
 
 function animateRectangle() {
   const targetX = isMovingRight ? '800%' : '-810%';
