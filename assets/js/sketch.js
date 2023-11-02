@@ -150,7 +150,10 @@ if (key === 'g') {
 }
 
 
-
+// for h
+if (key === 'h') {
+  circleFade()
+}
 
 
 
@@ -260,4 +263,14 @@ function animateRectangle() {
   });
 
   isMovingRight = !isMovingRight; // Toggle the direction for the next press of "f"
+}
+
+
+function circleFade() {
+  anime({
+    targets: circle-fade,
+    opacity: [1,0],
+    easing: 'easeInExpo',
+    duration: 500,
+  })
 }
