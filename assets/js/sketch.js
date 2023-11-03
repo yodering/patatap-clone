@@ -25,6 +25,7 @@ function preload() {
   sound4 = loadSound('assets/rise.wav')
   sound5 = loadSound('assets/8082.wav')
   sound6 = loadSound('assets/click.wav')
+  sound7 = loadSound('assets/impact.wav')
   sound9 = loadSound('assets/snare.wav')
   
 }
@@ -162,6 +163,14 @@ if (key === 'h' || key === 'H') {
 
 
 
+//for j
+if (key === 'j' || key === 'J') {
+  sound7.play()
+  animateZigzag()
+}
+
+
+// for k
 
 
  // for l
@@ -311,4 +320,26 @@ function circleFade() {
       },
     });
   });
+}
+
+function animateZigzag() {
+  var svgs = document.querySelectorAll('svg'); // Selects both SVGs
+  var randomIndex = Math.floor(Math.random() * svgs.length); // Randomly select 0 or 1
+  var svg = svgs[randomIndex];
+  
+  // Clone the selected SVG to reset the animation
+  var newSvg = svg.cloneNode(true);
+
+  // Select the path using the class since ID should be unique and we have two identical paths
+  var path = newSvg.querySelector('.vertical-zigzag');
+  
+  // Reset the stroke-dashoffset and stroke-opacity
+  path.setAttribute('stroke-dashoffset', '2000');
+  path.setAttribute('stroke-opacity', '0');
+
+  // Replace old SVG with the new one to reset the animation
+  svg.parentNode.replaceChild(newSvg, svg);
+
+  // Reapply the animation
+  path.classList.add('animate-zigzag');
 }

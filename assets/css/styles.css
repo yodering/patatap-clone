@@ -4,6 +4,7 @@ html, body {
   overflow: hidden;
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 }
 
 
@@ -94,4 +95,51 @@ html, body {
   transform-origin: center;
   opacity: 0; /* Start fully transparent */
 }
+
+
+.zigzag-svg {
+  display: block;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100vh; /* Full viewport height */
+}
+
+.zigzag-left {
+  left: 12%;
+}
+
+.zigzag-right {
+  left: 80%; /* Align to the right instead of 'left: 80%' */
+}
+
+.vertical-zigzag {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  stroke-opacity: 0;
+  stroke-width: 10;
+  stroke: rgb(255, 148, 177);
+  fill: none;
+}
+
+@keyframes draw-zigzag {
+  0% {
+    stroke-dashoffset: 2000;
+    stroke-opacity: 0;
+  }
+  1% {
+    stroke-opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-zigzag {
+  animation: draw-zigzag 3s forwards;
+}
+
+
+
 
