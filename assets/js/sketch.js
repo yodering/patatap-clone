@@ -117,7 +117,7 @@ function keyPressed() {
 if (key === 'g' || key === 'G') {
   sound5.play()
   var fourthMotionDiv = document.querySelector('.fourth-motion')
-  var fourthMotionState = 'left'; // Initialize the state for the fourth-motion div
+  var fourthMotionState = 'left'; // initialize the state for the fourth-motion div
 
   // if div currently animating, do nothing
   if (fourthMotionState === 'movingLeft' || fourthMotionState === 'movingRight') {
@@ -276,7 +276,7 @@ function animateRectangle() {
     easing: 'easeOutCubic',
   });
 
-  isMovingRight = !isMovingRight; // Toggle the direction for the next press of "f"
+  isMovingRight = !isMovingRight; 
 }
 
 const colors = [
@@ -323,23 +323,22 @@ function circleFade() {
 }
 
 function animateZigzag() {
-  var svgs = document.querySelectorAll('svg'); // Selects both SVGs
-  var randomIndex = Math.floor(Math.random() * svgs.length); // Randomly select 0 or 1
+  var svgs = document.querySelectorAll('svg'); 
+  var randomIndex = Math.floor(Math.random() * svgs.length); 
   var svg = svgs[randomIndex];
   
-  // Clone the selected SVG to reset the animation
+  // clone the SVG to reset the animation
   var newSvg = svg.cloneNode(true);
 
-  // Select the path using the class since ID should be unique and we have two identical paths
+
   var path = newSvg.querySelector('.vertical-zigzag');
   
-  // Reset the stroke-dashoffset and stroke-opacity
+
   path.setAttribute('stroke-dashoffset', '2000');
   path.setAttribute('stroke-opacity', '0');
 
-  // Replace old SVG with the new one to reset the animation
+  // replace svg
   svg.parentNode.replaceChild(newSvg, svg);
 
-  // Reapply the animation
   path.classList.add('animate-zigzag');
 }
