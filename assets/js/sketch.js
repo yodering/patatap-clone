@@ -24,7 +24,9 @@ function preload() {
   sound3 = loadSound('assets/shutter.wav')
   sound4 = loadSound('assets/rise.wav')
   sound5 = loadSound('assets/8082.wav')
+  sound6 = loadSound('assets/click.wav')
   sound9 = loadSound('assets/snare.wav')
+  
 }
 
 function setup() {
@@ -46,7 +48,7 @@ function draw() {
 
 function keyPressed() {
   // for a
-  if (key === 'a') {
+  if (key === 'a'|| key ==='A') {
     sound1.play()
     flashCounter = 0
     if (flashInterval) {
@@ -59,7 +61,7 @@ function keyPressed() {
 
 
   // for s
-  if (key === 's') {
+  if (key === 's' || key ==='S') {
     sound2.play()
     var secondMotionDiv = document.querySelector('.second-motion')
 
@@ -98,20 +100,20 @@ function keyPressed() {
 
 
   // for d
-  if (key === 'd') {
+  if (key === 'd' || key === 'D') {
     animateCircleDiv();
     sound3.play()
 }
 
 
   // for f
-  if (key === "f") {
+  if (key === 'f' || key === 'F') {
     sound4.play()
     animateRectangle()
   }
 
 // for g
-if (key === 'g') {
+if (key === 'g' || key === 'G') {
   sound5.play()
   var fourthMotionDiv = document.querySelector('.fourth-motion')
   var fourthMotionState = 'left'; // Initialize the state for the fourth-motion div
@@ -151,8 +153,11 @@ if (key === 'g') {
 
 
 // for h
-if (key === 'h') {
-  circleFade()
+if (key === 'h' || key === 'H') {
+  circleFade();
+  setTimeout(function() {
+    sound6.play();
+  }, 500); // Delays the sound playing by 500ms
 }
 
 
@@ -160,7 +165,7 @@ if (key === 'h') {
 
 
  // for l
- if (key === 'l') {
+ if (key === 'l' || key === 'L') {
   sound9.play()
   flashCounter = 0
   if (flashInterval) {
@@ -265,12 +270,45 @@ function animateRectangle() {
   isMovingRight = !isMovingRight; // Toggle the direction for the next press of "f"
 }
 
+const colors = [
+  'rgba(189, 139, 236, 1)',
+  'rgba(83, 226, 23, 1)',
+  'rgba(220, 187, 43, 1)',
+  'rgba(181, 158, 29, 1)', 
+  'rgba(105, 47, 47, 1)',
+  'rgba(116, 121, 168, 1)'
+];
 
 function circleFade() {
-  anime({
-    targets: circle-fade,
-    opacity: [1,0],
-    easing: 'easeInExpo',
-    duration: 500,
-  })
+  // selects circles
+  const circles = document.querySelectorAll('.circle-fade');
+
+  circles.forEach(circle => {
+    // randomize position within window
+    const maxX = document.documentElement.clientWidth - circle.offsetWidth;
+    const maxY = document.documentElement.clientHeight - circle.offsetHeight;
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+    
+    // assign random color from array
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    
+    // Set initial background before animation
+    circle.style.background = `radial-gradient(circle at center, ${color} 0%, rgba(0, 0, 0, 0) 70%)`;
+
+    anime({
+      targets: circle,
+      scale: [0, 1], // small then scale
+      opacity: [0, 1, 0], // transparent, opaque, fade out
+      easing: 'easeOutCubic',
+      duration: 1000,
+      left: `${randomX}px`, // random left
+      top: `${randomY}px`, // random top
+      update: function(anim) {
+        const progress = anim.progress; // 0 to 100
+        // fade from center
+        circle.style.background = `radial-gradient(circle at center, ${color} ${progress}%, rgba(0, 0, 0, 0) ${progress + 30}%)`;
+      },
+    });
+  });
 }
