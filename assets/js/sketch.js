@@ -26,6 +26,7 @@ function preload() {
   sound5 = loadSound('assets/8082.wav')
   sound6 = loadSound('assets/click.wav')
   sound7 = loadSound('assets/impact.wav')
+  sound8 = loadSound('assets/slide.wav')
   sound9 = loadSound('assets/snare.wav')
   
 }
@@ -171,7 +172,10 @@ if (key === 'j' || key === 'J') {
 
 
 // for k
-
+if (key === 'k' || key === 'K') {
+  sound8.play()
+  animateLine()
+}
 
  // for l
  if (key === 'l' || key === 'L') {
@@ -341,4 +345,20 @@ function animateZigzag() {
   svg.parentNode.replaceChild(newSvg, svg);
 
   path.classList.add('animate-zigzag');
+}
+
+const lineDiv = document.querySelector(".line-animation");
+
+function animateLine() {
+  const targetX = isMovingRight ? '800%' : '-810%';
+  const animationDuration = 2000;
+
+  anime({
+    targets: lineDiv,
+    translateX: targetX,
+    duration: animationDuration,
+    easing: 'easeOutCubic',
+  });
+
+  isMovingRight = !isMovingRight; 
 }
