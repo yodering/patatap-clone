@@ -19,15 +19,15 @@ var sound9
 
 
 function preload() {
-  sound1 = loadSound('assets/clap.wav')
-  sound2 = loadSound('assets/808.wav')
-  sound3 = loadSound('assets/shutter.wav')
-  sound4 = loadSound('assets/rise.wav')
-  sound5 = loadSound('assets/8082.wav')
-  sound6 = loadSound('assets/click.wav')
-  sound7 = loadSound('assets/impact.wav')
-  sound8 = loadSound('assets/slide.wav')
-  sound9 = loadSound('assets/snare.wav')
+  sound1 = loadSound('assets/sounds/clap.wav')
+  sound2 = loadSound('assets/sounds/808.wav')
+  sound3 = loadSound('assets/sounds/shutter.wav')
+  sound4 = loadSound('assets/sounds/rise.wav')
+  sound5 = loadSound('assets/sounds/8082.wav')
+  sound6 = loadSound('assets/sounds/click.wav')
+  sound7 = loadSound('assets/sounds/impact.wav')
+  sound8 = loadSound('assets/sounds/slide.wav')
+  sound9 = loadSound('assets/sounds/snare.wav')
   
 }
 
